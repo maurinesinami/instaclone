@@ -8,4 +8,4 @@ from django.http import HttpResponse,Http404
 
 
 def welcome(request):
-    return HttpResponse('welcome to instagram')
+    return render(request,'index.html')
