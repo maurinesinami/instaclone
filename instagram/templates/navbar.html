@@ -6,9 +6,29 @@
   
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
+        <div class="col-sm-6 col-md-6">
+          {% if user.is_authenticated %}
+          <ul>
+            <li class="nav-item dropdown">
+              <a href="#" class="nav-link" id="navbarDropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account
+                        <i class="far fa-user fa-lg"></i>
+                    </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a href="{%url 'welcome'%}" class="dropdown-item">Home</a>
+                  <a href="/accounts/password/change" class="dropdown-item">Change Password</a>
+                  <a href="/logout" class="dropdown-item">Logout</a>
+                
+            </li>
+        
+          {% else %}
+          <li>
+            <a class='btn btn-default' href="/accounts/login">Login</a>
+          </li>
+
+          {% endif %}
+        </div>
+      </div>
   
-      
-  </div>
       <form class="form-inline my-2 my-lg-0 navbar-form" role="search" action="">
         <input class="form-control mr-sm-2 search_bar text-center" type="search" placeholder="Search" aria-label="Search" name="image_name">
         <button class="btn btn-outline-info my-2 my-sm-0" type="submit" style="display:none">Search</button>
