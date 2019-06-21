@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^instagram/',include('instagram.urls'))
+    url(r'^instagram/',include('instagram.urls')),
+    url(r'^tinymce/', include('tinymce.urls')),
 ]
