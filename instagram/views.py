@@ -57,3 +57,13 @@ def profile(request):
     posts=Image.objects.filter(profile_id=current_user.id)
     return render(request, 'profile-page.html',{"profile":profile,"posts":posts})
     
+@login_required(login_url='/accounts/login/')
+def view_users(request, user_id):
+    profile_pic= Profile.objects.filter(id=user_id).all()
+    my_photos = Image.objects.filter(profile_id=user_id)
+    users=User.objects.filter(id=user_id).all()
+
+    return render(request, "other.html", {"photos":my_photos, "profile":profile_pic, "users":users})
+
+def login_page(request):
+    return render(request, 'come.html')
