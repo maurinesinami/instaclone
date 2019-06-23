@@ -14,6 +14,9 @@
                         <i class="far fa-user fa-lg"></i>
                     </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="{% url 'new-article' %}">Create Post</a>
+                  <a class="dropdown-item" href="{% url 'new-profile'%}">Create Profile</a>
+                  <a class="dropdown-item" href="{% url 'profile'%}">Profile</a> 
                   <a href="{%url 'welcome'%}" class="dropdown-item">Home</a>
                   <a href="/accounts/password/change" class="dropdown-item">Change Password</a>
                   <a href="/logout" class="dropdown-item">Logout</a>
@@ -29,9 +32,16 @@
         </div>
       </div>
   
-      <form class="form-inline my-2 my-lg-0 navbar-form" role="search" action="">
-        <input class="form-control mr-sm-2 search_bar text-center" type="search" placeholder="Search" aria-label="Search" name="image_name">
+      <!-- <form class="form-inline my-2 my-lg-0 navbar-form" role="search" action="{% url 'search_results' %}">
+        <div class="input-group"></div>
+        <input class="form-control mr-sm-2 search_bar text-center" type="search" placeholder="Search" aria-label="Search" name="profile">
         <button class="btn btn-outline-info my-2 my-sm-0" type="submit" style="display:none">Search</button>
-      </form>
+      </form> -->
+      
+        <form class="form-inline">
+          <input class="form-control mr-sm-2 search_bar text-center" type="search" placeholder="Search" aria-label="Search" name="image_name">
+          <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    
   
   </nav>
