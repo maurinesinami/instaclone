@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse,Http404
-from . models import Image,Profile
+from . models import Image,Profile,Comment
 from django.contrib.auth.decorators import login_required
-from .forms import NewsProfileForm,NewPostForm
+from .forms import NewProfileForm,NewPostForm,CommentForm
 from django.contrib.auth.models import User
 
 
@@ -40,7 +40,7 @@ def new_post(request):
 def new_profile(request):
     current_user = request.user
     if request.method == 'POST':
-        form = NewsProfileForm(request.POST, request.FILES)
+        form = NewProfileForm(request.POST, request.FILES)
         if form.is_valid():
             profile = form.save(commit=False)
             profile.username = current_user
@@ -48,7 +48,7 @@ def new_profile(request):
             profile.save()
         return redirect('profile')
     else:
-        form = NewsProfileForm()
+        form = NewProfileForm()
     return render(request, 'new-profile.html', {"form":form})
 
 def profile(request):
@@ -56,4 +56,12 @@ def profile(request):
     profile = Profile.objects.get(username=current_user)
     posts=Image.objects.filter(profile_id=current_user.id)
     return render(request, 'profile-page.html',{"profile":profile,"posts":posts})
-    
+@login_required(login_url='/accounts/login/')   
+def comment(request,id):
+    image =Image.objects.get(id=id)
+    form = CommentForm()
+    try:
+        comments = Comment.objects.filter(id=id)
+    except:
+        form = CommentForm()
+    return render(request,'comment.html',{'image':image,'comments':comments,'form':form})

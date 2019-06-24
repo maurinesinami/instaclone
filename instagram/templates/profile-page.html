@@ -6,15 +6,15 @@
   <div class="container">
     <div class="row">
       <div class="col-md-6 col-sm-12">
-        <img src="{{profile.profile_photo.url}}" alt="bikcha" width="150px" height="150px" class="rounded-circle">
+        <img src="{{profile.profile_photo.url}}" alt="" width="150px" height="150px" class="rounded-circle">
       </div>
       <div class="col-md-6 col-sm-12">
-      <div class="yass">
-        <div class="ok">
+      <div class="">
+        <div class="">
           <b><p>{{profile.username}}</p></b>
         </div>
         <div class="button">
-          <a href="#" style="border:1px solid lightgrey;border-radius:2px;color:black;text-decoration:none">Edit profile</a>
+          <a href="{url 'new-profile'}" style="border:1px solid lightgrey;border-radius:2px;color:black;text-decoration:none">Edit profile</a>
         </div>
         <div class="cog">
           <i class="fas fa-cog"></i>
@@ -29,7 +29,7 @@
       {%for post in posts%}
         
           <div class="card" style="width:18rem">
-            <img src="{{post.image.url}}" alt="told ya" width="100%">
+            <img src="{{post.image.url}}" alt="" width="100%">
           </div>
 
 

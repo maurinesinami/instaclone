@@ -5,10 +5,10 @@ from django.conf.urls.static import static
 urlpatterns=[
     url('^$',views.welcome,name='welcome'),
     url(r'^search/', views.search_results, name='search_results'),
-     url(r'^new/article$', views.new_post, name='new-article'),
+    url(r'^new/post$', views.new_post, name='new-post'),
     url(r'^profile/$',views.profile,name='profile'),
     url(r'^new/profile$', views.new_profile, name='new-profile'),    
-    
+    url(r'^comment/(\d+)$',views.comment,name='comment'),
 
 ]
 if settings.DEBUG:
