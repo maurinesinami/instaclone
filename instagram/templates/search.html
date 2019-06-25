@@ -6,7 +6,7 @@
     {% if posts%}
       <h2>Found {{ posts|length }} posts titled "{{message}}"</h2>
     {% else %}
-      <h2> Found 0 posts titled "{{message}}"</h2>
+      <h2> Found 0 USERS titled "{{message}}"</h2>
     {% endif %}
 
   </div>
@@ -21,7 +21,7 @@
         <div class="card-header">
           <h5 class="card-title">{{post.image_name}}</h5>
         </div>
-        <img src="{{post.image.url}}" class="card-img-top" alt="dummy" width="100%">
+        <img src="{{post.image.url}}" class="card-img-top" alt="" width="100%">
 
         <div class="card-body">
           <ul class="list-group list-group-flush">

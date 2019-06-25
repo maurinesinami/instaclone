@@ -1,7 +1,6 @@
 
+
 {%extends 'base.html'%}
-{% block content %}
-{{ block.super}}
 
 <!DOCTYPE html>
 <html>
@@ -12,58 +11,79 @@
 
  <title>New Comment</title>
  {{form.media}}
- {% load bootstrap4 %} {% load staticfiles %}
-{% block styles %} {% bootstrap_css %}
+ {% load bootstrap4 %}
+ {% load staticfiles %}
+ {% block styles %}
+ {% bootstrap_css %}
  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
- 
  {% endblock %}
 
 </head>
 
 <body>
-<div class="container" style="margin-top:50px;margin-bottom:50px;">
+ {% block content %}
+ {{ block.super}}
+ <div class="container">
    <div class="row">
-       <div class="col-md-2 col-sm-2 col-xs-1"></div>
-   <div class="col-md-8 col-sm-8 col-xs-10">
+     <div class="col-md-2 col-sm-2 col-xs-1"></div>
+     <div class="col-md-8 col-sm-8 col-xs-10">
        <div class="card">
-               <a style="text-decoration:none;color:black"href="profile/{{user.id}}">
-                   <p><img class="post" src="{{profile.profile_photo.url}}"></p><br>
-                       </a>
-       <img class="img-responsive" src="{{image.image.url}}"><br>
-   IMAGE NAME:<b> {{image.image_name}}</b>
-   CAPTION : <b>{% autoescape on%}{{image.image_caption|safe}}{% endautoescape %} </b>
-   
+         <img class="img-responsive" src="{{image.image.url}}" style="display: block; margin-right: auto; margin-left: auto;">
+         IMAGE NAME:<b> {{image.image_name}}</b>
+         CAPTION : <b>{% autoescape on%}{{image.image_caption|safe}}{% endautoescape %} </b>
+         <i class="glyphicon glyphicon-heart"></i>
+         <br>
        </div>
-
-   {% for comment in comments %}
-
-   <p class="">{{comment.comment}}</p>
-   <hr>
-   {% endfor %}
-
-<div class="navbar-fixed-bottom">
+      
+       <div style="">
+         {% if profile %}
+         {% for img in profile %}
+         <!-- <a href="{% url 'profile'  %}" style="color: black; ">
+           <h4 style="display: inline-block; text-align: center"><img src="{{img.profile_pic.url}}" class="img-circle" alt="Image"
+               style="height: 25px; width: 25px;">
+           </h4>
+         </a> -->
+         {% empty %}
+         {% endfor %}
+         {% endif %}
+         <a href="{% url 'profile'  %}" style="color: black; ">
+           {{img.user}}
+         </a>
+         <h3 class="text-center">COMMENTS
+         {% for comment in comments %}
+         <h3>{{comment.comment}}</h3>
+         {% endfor %}
+         <br><br>
+         </h3>
+       </div>
        <div class="col-md-3 col-sm-2"></div>
-   <div class="col-md-6 col-sm-8">
-   <form action="/comment/{{user.id}}" method="post" enctype="multipart/form-data">
-   {%csrf_token%}
+       <div class="col-md-6 col-sm-8">
+         <form action="/comment/{{user.id}}" method="post" enctype="multipart/form-data">
+           {%csrf_token%}
+           {% bootstrap_form form%}
+           <input type="submit" class="btn btn-primary btn-sm" value="Post">
+         </form>
+       </div>
+       <div class="col-md-3 col-sm-2"></div>
+     </div>
+   </div>
 
-   {% bootstrap_form form%}
-   <input type="submit" class="btn btn-primary btn-sm" value="Post">
- </form>
+   {% block scripts %}
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   {% bootstrap_javascript %} {% endblock %}
+
+   <div class="col-md-2 col-sm-2 col-xs-1"></div>
  </div>
- <div class="col-md-3 col-sm-2"></div>
-</div>
-</div>
 
-  {% block scripts %}
- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
- {% bootstrap_javascript %} {% endblock %}
-
- <div class="col-md-2 col-sm-2 col-xs-1"></div>
-</div>
-
-</div>
-<br><br><br>
+ </div>
+ <br><br><br>
 </body>
 {% endblock %}
+
 </html>
+ <!-- <img class="img-responsive" src="{{image.image.url}}"><br>
+   IMAGE NAME:<b> {{image.image_name}}</b>
+   CAPTION : <b>{% autoescape on%}{{image.image_caption|safe}}{% endautoescape %} </b>
+    -->
+       
+  

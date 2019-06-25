@@ -15,8 +15,8 @@
                     </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'new-post' %}">Create Post</a>
-                  <a class="dropdown-item" href="{% url 'new-profile' %}">Create Profile</a>                  
-                  <a class="dropdown-item" href="{% url 'profile'%}">Profile</a> 
+                  <a class="dropdown-item" href="{% url 'new-profile' user.id %}">Create Profile</a>                  
+                  <a class="dropdown-item" href="{% url 'profile' %}">Profile</a> 
                   <a href="{%url 'welcome'%}" class="dropdown-item">Home</a>
                   <a href="/accounts/password/change" class="dropdown-item">Change Password</a>
                   <a href="/logout" class="dropdown-item">Logout</a>
