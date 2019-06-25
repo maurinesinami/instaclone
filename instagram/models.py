@@ -40,8 +40,8 @@ class Image(models.Model):
 
     '''search by image_name'''
     @classmethod
-    def search_by_image_name(cls, search_term):
-        posts = cls.objects.filter(image_name__icontains=search_term)
+    def search_by_username(cls, search_term):
+        posts = cls.objects.filter(username__icontains=search_term)
         return posts
     class Meta:
         ordering=["-id"]
@@ -54,3 +54,11 @@ class Comment(models.Model):
 
    def __str__(self):
        return self.comment
+
+
+
+   def save_comment(self):
+       self.save() 
+               
+
+      

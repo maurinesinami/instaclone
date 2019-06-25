@@ -10,14 +10,15 @@ from django.contrib.auth.models import User
 @login_required(login_url='/accounts/login/')
 def welcome(request):
     images = Image.objects.all()
+    profiles = Profile.objects.all()
     
-    return render(request,'index.html',{"images":images})
+    return render(request,'index.html',{"images":images,    })
 def search_results(request):
-    if 'profile' in request.GET and request.GET["profile"]:
-        search_term = request.GET.get("profile")
+    if 'user' in request.GET and request.GET["user"]:
+        search_term = request.GET.get("user")
         searched_profiles = User.objects.filter(username__icontains=search_term)
         message = f"{search_term}"
-        return render(request, 'search.html',{"message":message, "profile":searched_profiles})
+        return render(request, 'search.html',{"message":message, "user":searched_profiles})
     else:
         message = "You haven't searched for any term."
         return render(request, 'search.html', {"message":message})  
@@ -37,7 +38,7 @@ def new_post(request):
     return render(request, 'new-post.html', {"form": form})
 
       
-def new_profile(request):
+def new_profile(request,id):
     current_user = request.user
     if request.method == 'POST':
         form = NewProfileForm(request.POST, request.FILES)
@@ -58,10 +59,22 @@ def profile(request):
     return render(request, 'profile-page.html',{"profile":profile,"posts":posts})
 @login_required(login_url='/accounts/login/')   
 def comment(request,id):
+    comments = Comment.objects.filter(image=id)
     image =Image.objects.get(id=id)
     form = CommentForm()
+    current_user = request.user
+    if request.method == 'POST':
+        form = NewPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.comment=current_user
+            post.save()
+        return redirect('welcome')
+
     try:
         comments = Comment.objects.filter(id=id)
     except:
         form = CommentForm()
     return render(request,'comment.html',{'image':image,'comments':comments,'form':form})
+def login_page(request):
+    return render(request, 'form.html')    

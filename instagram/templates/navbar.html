@@ -15,7 +15,7 @@
                     </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{% url 'new-post' %}">Create Post</a>
-                  <a class="dropdown-item" href="{% url 'new-profile'%}">Create Profile</a>
+                  <a class="dropdown-item" href="{% url 'new-profile' %}">Create Profile</a>                  
                   <a class="dropdown-item" href="{% url 'profile'%}">Profile</a> 
                   <a href="{%url 'welcome'%}" class="dropdown-item">Home</a>
                   <a href="/accounts/password/change" class="dropdown-item">Change Password</a>
@@ -32,8 +32,8 @@
         </div>
       </div>
       
-        <form class="form-inline">
-          <input class="form-control mr-sm-2 search_bar text-center" type="search" placeholder="Search" aria-label="Search" name="image_name">
+        <form class="form-inline" role="search" action="{% url 'search_results' %}">
+          <input class="form-control mr-sm-2 search_bar text-center" type="search" placeholder="Search" aria-label="Search" name="username">
           <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
         </form>
     

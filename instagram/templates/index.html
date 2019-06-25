@@ -1,22 +1,26 @@
 {%extends 'base.html'%}
+{% load bootstrap4 %}
 {% block content %}
+{% load staticfiles %}
 {{block.super}}
-<h1 class='text-center'>Instagram</h1>
+<h1 class='text-center'>Instagram </h1>
 
 {% for image in images%}
 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
     <div class="card-header">
-    <h3>{{image.image_name}}</h3>
-    <h4 style="display: inline-block; "><img src="{{image.profile_photo.url}}" class="img-circle" alt="Image"
+    <!-- <h3 class="card-title"><b>{{image.image_name}}</b></h3> -->
+<p style="color:black;font-weight:bolder;text-decoration:none;"><b>{{user.username}}</b></p></a>
+    <!-- <h4 style="display: inline-block; "><img src="{{image.profile.profile_photo.url}}" class="img-circle" alt="Image"
         style="height: 25px; width: 25px;">
-    </h4>
+    </h4> -->
     </div>
-    <div class="card-body">
+    
     <img src="{{image.image.url}}" alt="image" class="img-responsive">
+    <div class="card-body">
     <ul class="list-group list-group-flush">
-        <li class="list-group-item"><i class="far fa-comment"></i>      <i class="far fa-heart"></i></li>
+         <li class="list-group-item"> <i class="far fa-comment"></i>      <i class="far fa-heart"></i></li> 
         <li class="list-group-item"><b>comments</b> {% autoescape on%}{{image.image_caption|safe}}{% endautoescape %}</li>
-        <a href="comment/{{image.id}}">View comment</a>
+        <a href="comment/{{image.id}}">View photo</a>
       </ul>
     </div>
 

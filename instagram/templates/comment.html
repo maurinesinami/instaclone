@@ -12,7 +12,7 @@
 
  <title>New Comment</title>
  {{form.media}}
- {% load bootstrap3 %} {% load staticfiles %}
+ {% load bootstrap4 %} {% load staticfiles %}
 {% block styles %} {% bootstrap_css %}
  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
  
@@ -27,15 +27,17 @@
    <div class="col-md-8 col-sm-8 col-xs-10">
        <div class="card">
                <a style="text-decoration:none;color:black"href="profile/{{user.id}}">
-                   <p><img class="post" src="{{image.profile.profile_photo.url}}"></p><br>
+                   <p><img class="post" src="{{profile.profile_photo.url}}"></p><br>
                        </a>
        <img class="img-responsive" src="{{image.image.url}}"><br>
-
+   IMAGE NAME:<b> {{image.image_name}}</b>
+   CAPTION : <b>{% autoescape on%}{{image.image_caption|safe}}{% endautoescape %} </b>
+   
        </div>
 
-   {% for comment in comment %}
+   {% for comment in comments %}
 
-   <p class="ment">{{comment.comment}}</p>
+   <p class="">{{comment.comment}}</p>
    <hr>
    {% endfor %}
 
